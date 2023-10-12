@@ -20,8 +20,6 @@ export const putDb = async (content) => {
 
   const tx = contactDb.transaction('jate', 'readwrite');
 
-  const key = tx.objectStore('jate').getAllKeys()
-
   const store = tx.objectStore('jate');
 
   const request = store.put({content: content, id: 1});
