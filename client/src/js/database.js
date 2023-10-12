@@ -20,9 +20,11 @@ export const putDb = async (content) => {
 
   const tx = contactDb.transaction('jate', 'readwrite');
 
+  const key = tx.objectStore('jate').getAllKeys()
+
   const store = tx.objectStore('jate');
 
-  const request = store.put(content);
+  const request = store.put({content: content, id: 1});
 
   const result = await request;
   console.log('result.value', result);
@@ -39,11 +41,11 @@ export const getDb = async () => {
 
   const store = tx.objectStore('jate');
 
-  const request = store.getAll();
+  const request = store.get(1);
 
   const result = await request;
   console.log('result.value', result);
-  return result;
+  return result?.content;
 };
 
 initdb();
